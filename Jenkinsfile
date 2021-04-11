@@ -39,8 +39,8 @@ pipeline {
 				}
 				echo pom.version
 				echo "version is: ${pom.version}" 
-				sh 'echo "${pom.version}"'
-				sh 'docker tag addressbook:latest vasistaops/addressbook:"${pom.version}"'
+				sh 'echo ${pom.version}'
+				sh 'docker tag addressbook:latest vasistaops/addressbook:${pom.version}'
 			}
 		}
 		stage('Push Docker Image') {
