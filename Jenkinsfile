@@ -33,7 +33,8 @@ pipeline {
 		}
 		stage('Tag Docker Image') {
 			steps {
-				pom = readMavenPom file: 'pom.xml'
+				def pom = readMavenPom file: 'pom.xml'
+				//version = readMavenPom().getVersion()
 				sh 'docker tag addressbook:latest vasistaops/addressbook:pom.version'
 			}
 		}
