@@ -36,8 +36,8 @@ pipeline {
 				script { 
 					//def version = readMavenPom().getVersion()
 					def pom = readMavenPom file: 'pom.xml'
-					sh 'echo "Version is: ${pom.version}"'
-					sh 'docker tag addressbook:latest vasistaops/addressbook:${pom.version}'
+					sh 'echo "${pom.version}"'
+					sh 'docker tag addressbook:latest vasistaops/addressbook:"${pom.version}"'
 				}
 			}
 		}
