@@ -40,14 +40,14 @@ pipeline {
 				echo pom.version
 				echo "version is: ${pom.version}" 
 				sh "echo ${pom.version}"
-				sh 'docker tag addressbook:latest vasistaops/addressbook:${pom.version}'
+				sh "docker tag addressbook:latest vasistaops/addressbook:${pom.version}"
 			}
 		}
 		stage('Push Docker Image') {
 			steps {
 				withCredentials([usernamePassword(credentialsId: 'DOCKER_CREDS', passwordVariable: 'DOCKER_HUB_PWD', usernameVariable: 'DOCKER_HUB_USER')]) {
 					sh 'docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PWD'
-					sh 'docker push vasistaops/addressbook:${version}'
+					sh "docker push vasistaops/addressbook:${pom.version}"
 				}
 			}
 		}
